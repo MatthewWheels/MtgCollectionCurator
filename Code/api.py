@@ -19,3 +19,17 @@ def get_bulk_data():
         # Handle any network-related errors or exceptions
         print('Error:', e)
         return None
+    
+def download_api_data(download_uri):
+    try:
+        response = requests.get(download_uri)
+
+        if response.status_code == 200:
+            data = response.json()
+            return data
+        else:
+            print('Error:', response.status_code)
+            return None
+    except requests.exceptions.RequestException as e:
+        print('Error:', e)
+        return None

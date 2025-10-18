@@ -1,4 +1,5 @@
 import sqlalchemy as db
+from io import StringIO
 import json
 import api
 
@@ -22,5 +23,12 @@ metadata_obj = db.MetaData()
 
 # Create the profile table
 #metadata_obj.create_all(engine)
+io = StringIO()
+bulk_data = json.dump(api.get_bulk_data(), io)
+json_data = json.loads(io.getvalue())
 
-bulk_data = api.get_bulk_data()
+for i in json_data["data"]:
+    print("Downloading " + i["name"] +  "...")
+    download_uri = i["download_uri"]
+    data = api.download_api_data(download_uri)
+    print("Downloaded")
