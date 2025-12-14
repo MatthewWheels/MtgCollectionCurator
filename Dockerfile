@@ -9,7 +9,7 @@ RUN mkdir -p /my-app
 
 WORKDIR /my-app
 
-COPY ./sql-scripts/ /my-app
+COPY ./containers/sql-scripts/ /my-app
 
 EXPOSE 1433
 
