@@ -14,7 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: cd containers
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mtgcollectioncurator:$(date +%s)
+      run: |
+        cd containers
+        docker build . --file Dockerfile --tag mtgcollectioncurator:$(date +%s)
     
